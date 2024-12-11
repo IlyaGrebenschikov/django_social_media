@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     
     # local
     'main.apps.MainConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
