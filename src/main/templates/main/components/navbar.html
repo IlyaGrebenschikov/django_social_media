@@ -1,0 +1,45 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 0px;">
+    <div class="container-fluid" style="background-color: #FFFFFF;">
+
+        <a class="navbar-brand" href="#" style="display: inline-block; margin-left: 20%">
+            <img src="{% static 'main/images/social-media.svg' %}" alt="#" width="30%" height="30%">
+            django sm
+        </a>
+
+        <div class="collapse navbar-collapse" style="background-color: #FFFFFF">
+          <ul class="navbar-nav order-0" style="margin-left: 0px">
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: black">
+                <img src="{% static 'main/images/notification.svg' %}" alt="#" width="100%" height="100%">
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: black">
+                <img src="{% static 'main/images/music.svg' %}" alt="#" width="110%" height="110%">
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-right: 20%">
+            <ul class="navbar-nav mr-auto">
+              <form class="form-inline" style="margin-top: 12px; margin-right: 95px">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+              </form>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="{% static 'main/images/user.svg' %}" alt="#" width="80%" height="80%">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">My page</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

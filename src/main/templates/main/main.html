@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block title %}
+  Главная Страница
+{% endblock title %}
+
+{% block content %}
+<div class="main-bg">
+  <div class="centered-content content-block">
+    Мейн Блок
+    <img src="{% static 'main/images/gigachad.png' %}" alt="nasa" width="40%" height="40%">
+  </div>
+</div>
+{% endblock content %}
