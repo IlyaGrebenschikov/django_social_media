@@ -15,11 +15,11 @@ from pathlib import Path
 from .env_settings import (
     get_app_settings,
     get_db_settings,
-    get_env_settings
+    load_env_settings
     )
 
 # Local settings from .env
-env_settings = get_env_settings('.env')
+env_settings = load_env_settings('.env')
 app_settings = get_app_settings()
 db_settings = get_db_settings()
 
