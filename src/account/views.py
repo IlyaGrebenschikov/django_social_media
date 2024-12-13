@@ -1,9 +1,11 @@
 from typing import Any
 
+from django.db.models.query import QuerySet
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -17,7 +19,6 @@ from .models import CustomUser
 class UserSignUpView(CreateView):
     template_name = 'account/sign_up.html'
     form_class = SignUpForm
-    success_url = 'home_page'
     
     def form_valid(self, form) -> HttpResponse:
         response = super().form_valid(form) 
@@ -31,6 +32,9 @@ class UserSignUpView(CreateView):
             login(self.request, user) 
         
         return response
+    
+    def get_success_url(self) -> str:
+        return reverse_lazy('user_detail', kwargs={'pk': self.request.user.pk})
 
 
 class UserSignInView(LoginView):
@@ -39,8 +43,8 @@ class UserSignInView(LoginView):
     template_name = 'account/sign_in.html'
     redirect_authenticated_user = True
     
-    def get_success_url(self) -> Any:
-        return reverse_lazy('home_page')
+    def get_success_url(self) -> str:
+        return reverse_lazy('user_detail', kwargs={'pk': self.request.user.pk})
     
     def form_invalid(self, form) -> HttpResponse:
         messages.error(self.request, 'Invalid username or password.')
@@ -50,4 +54,16 @@ class UserSignInView(LoginView):
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('home_page')
+
+
+class UserDetailView(DetailView, LoginRequiredMixin):
+    model = CustomUser
+    template_name = 'account/details.html'
+    context_object_name = 'user'
+    http_method_names = ['get']
     
+    def get_queryset(self) -> QuerySet[Any]:
+        current_user = self.request.user
+        queryset = super().get_queryset()
+        
+        return queryset.filter(pk=current_user.pk)   

@@ -13,3 +13,9 @@ sign in icon - https://www.flaticon.com/free-icon/log-in_1176390?term=sign+in&pa
 logo icon - https://www.flaticon.com/free-icon/book_2880363?term=social&page=1&position=2&origin=style&related_id=2880363
 
 dropdown icon - https://www.flaticon.com/free-icon/talking_3025567?term=user&page=1&position=1&origin=style&related_id=3025567
+
+user detail icon - https://www.flaticon.com/free-icon/gender-identity_7831765?term=user&page=1&position=6&origin=style&related_id=7831765
+
+email detail icon - https://www.flaticon.com/free-icon/mail_1424771?term=email&page=1&position=59&origin=style&related_id=1424771
+
+calendar detail icon - https://www.flaticon.com/free-icon/mail_1424771?term=email&page=1&position=59&origin=style&related_id=1424771
