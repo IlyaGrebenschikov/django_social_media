@@ -1,44 +1,68 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 0px;">
-    <div class="container-fluid" style="background-color: #FFFFFF;">
-
-        <a class="navbar-brand" href="#" style="display: inline-block; margin-left: 20%">
-            <img src="{% static 'main/images/social-media.svg' %}" alt="#" width="30%" height="30%">
-            django sm
+<nav class="navbar navbar-expand-lg" style="padding: 0px; height: 60px; background: linear-gradient(to right, #2c1f4a, #432874); box-shadow: 0 2px 15px rgba(44, 31, 74, 0.3);">
+    <div class="container-fluid" style="background: transparent;">
+        <!-- Логотип -->
+        <a class="navbar-brand" href="#" style="display: flex; align-items: center; position: absolute; top: 6px; left: 30px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            <img src="{% static 'main/images/social-media.svg' %}" alt="#" style="width: 35px; height: 35px; margin-right: 10px; filter: brightness(0) invert(1);">
+            <span style="font-size: 20px; font-weight: bold; background: linear-gradient(45deg, #9d71ea, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Django SM
+            </span>
         </a>
 
-        <div class="collapse navbar-collapse" style="background-color: #FFFFFF">
-          <ul class="navbar-nav order-0" style="margin-left: 0px">
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: black">
-                <img src="{% static 'main/images/notification.svg' %}" alt="#" width="100%" height="100%">
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: black">
-                <img src="{% static 'main/images/music.svg' %}" alt="#" width="110%" height="110%">
-              </a>
-            </li>
-          </ul>
+        <!-- Поиск -->
+        <div style="position: absolute; top: 10px; right: 350px;">
+            <form class="form-inline">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" 
+                    style="width: 300px; height: 40px; border-radius: 20px; border: 2px solid #432874; padding: 0 20px; font-size: 14px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.1); color: white;"
+                    onmouseover="this.style.boxShadow='0 0 15px rgba(125, 77, 255, 0.3)'; this.style.borderColor='#7c4dff'" 
+                    onmouseout="this.style.boxShadow='none'; this.style.borderColor='#432874'"
+                    placeholder="Search..."
+                    style="color: white; background: rgba(255, 255, 255, 0.1);">
+            </form>
         </div>
 
-        <div style="margin-right: 20%">
-            <ul class="navbar-nav mr-auto">
-              <form class="form-inline" style="margin-top: 12px; margin-right: 95px">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-              </form>
+        <!-- Профиль -->
+        <div style="position: absolute; top: 10px; right: 200px;">
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="{% static 'main/images/user.svg' %}" alt="#" width="80%" height="80%">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" 
+                        style="background: #7c4dff; border-radius: 50%; padding: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(124, 77, 255, 0.4)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 10px rgba(0,0,0,0.2)'">
+                        <img src="{% static 'main/images/user.svg' %}" alt="#" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">My page</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" 
+                        style="border-radius: 15px; border: none; box-shadow: 0 5px 25px rgba(44, 31, 74, 0.2); margin-top: 10px; overflow: hidden; background: #2c1f4a;">
+                        <li>
+                            <a class="dropdown-item" href="#" style="padding: 12px 24px; transition: all 0.2s ease; color: #fff;" 
+                                onmouseover="this.style.background='#432874'; this.style.paddingLeft='30px'" 
+                                onmouseout="this.style.background='transparent'; this.style.paddingLeft='24px'">
+                                My page
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#" style="padding: 12px 24px; transition: all 0.2s ease; color: #fff;"
+                                onmouseover="this.style.background='#432874'; this.style.paddingLeft='30px'" 
+                                onmouseout="this.style.background='transparent'; this.style.paddingLeft='24px'">
+                                Settings
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider" style="margin: 8px 0; border-color: #432874;"></li>
+                        <li>
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item" style="padding: 12px 24px; color: #ff6b6b; transition: all 0.2s ease;"
+                                    onmouseover="this.style.background='#3a2563'; this.style.paddingLeft='30px'" 
+                                    onmouseout="this.style.background='transparent'; this.style.paddingLeft='24px'">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>

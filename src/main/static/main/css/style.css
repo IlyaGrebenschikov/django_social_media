@@ -1,27 +1,14 @@
-.centered-navbar-links {
-    display: flex;
-    width: 800px;
-    gap: 40px;
-}
-
-.centered-content {
-    display: flex;
-    width: 800px;
-    margin: 20px auto;
-}
-
-.main-block {
-    display: flex;
-    height: 800;
-}
-
 html, body {
-    background: #FFFAFA
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(245, 245, 245, 0.97)),
+        repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(220, 220, 220, 0.1) 50px, rgba(220, 220, 220, 0.1) 51px),
+        repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(220, 220, 220, 0.1) 50px, rgba(220, 220, 220, 0.1) 51px);
 }
 
-.content-block {
-    display: flex;
-    background-color: #FFFAFA;
-    border-radius: 6px;
-    box-shadow: 0 2px 10px rgba(88, 88, 88, 0.5);
+.main-bg {
+    margin-top: -24px;
+    min-height: 100vh;
 }
