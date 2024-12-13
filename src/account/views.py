@@ -1,6 +1,8 @@
 from typing import Any
 
 from django.db.models.query import QuerySet
+from django.forms import BaseModelForm
+from django.forms import ValidationError
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
@@ -27,11 +29,17 @@ class UserSignUpView(CreateView):
             username=form.cleaned_data['username'],
             password=form.cleaned_data['password1']
             )
-        
+            
         if user:
             login(self.request, user) 
-        
+            
         return response
+
+    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
+        if 'password2' in form.errors:
+            messages.error(self.request, "Passwords dont match")
+            
+        return super().form_invalid(form)
     
     def get_success_url(self) -> str:
         return reverse_lazy('user_detail', kwargs={'pk': self.request.user.pk})
@@ -48,7 +56,6 @@ class UserSignInView(LoginView):
     
     def form_invalid(self, form) -> HttpResponse:
         messages.error(self.request, 'Invalid username or password.')
-        
         return super().form_invalid(form)
 
 

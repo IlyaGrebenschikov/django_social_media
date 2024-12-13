@@ -8,5 +8,5 @@ class CustomUser(User):
         return f'Name: {self.username}, email: {self.email}'
     
     def get_absolute_url(self):
-        return reverse("model_detail", kwargs={"pk": self.pk})
+        return reverse("user_detail", kwargs={"pk": self.pk})
     
