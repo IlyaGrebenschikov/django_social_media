@@ -10,15 +10,15 @@ from django.contrib import messages
 from django.http.response import HttpResponse
 from django.urls import reverse_lazy
 
-from .forms import SignUpForm
+from .forms import SignUpForm, SignInForm
 from .models import CustomUser
 
 
 class UserSignUpView(CreateView):
     template_name = 'account/sign_up.html'
     form_class = SignUpForm
-    success_url = '/'
-
+    success_url = 'home_page'
+    
     def form_valid(self, form) -> HttpResponse:
         response = super().form_valid(form) 
         user = authenticate(
@@ -34,6 +34,7 @@ class UserSignUpView(CreateView):
 
 
 class UserSignInView(LoginView):
+    form_class = SignInForm
     model = CustomUser
     template_name = 'account/sign_in.html'
     redirect_authenticated_user = True
