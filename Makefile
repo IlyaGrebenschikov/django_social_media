@@ -12,5 +12,8 @@ build-app:
 up-app:
 	$(DC_DIR) && $(DC) $(ENV_FILE) -f $(DC_FILE) up
 
-secret-key:
+generate-secret-key:
 	python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+
+create-superuser:
+	docker exec -it app python src/manage.py createsuperuser
